@@ -18,12 +18,20 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Learn\HOKISA\LR1\App\LR1App
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Learn/HOKISA/LR1/App/LR1App/Pages/BlobTest/CreateBlob.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmxvYlRlc3RcQ3JlYXRlQmxvYi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Learn/HOKISA/LR1/App/LR1App/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Learn/HOKISA/LR1/App/LR1App/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Learn/HOKISA/LR1/App/LR1App/Pages/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Learn/HOKISA/LR1/App/LR1App/Pages/Privacy.cshtml]

@@ -1,0 +1,80 @@
+﻿@page
+@model LR1App.Pages.CreateBlobModel
+@using Azure.Identity;
+@using Azure.Storage.Blobs;
+@using Azure.Storage.Blobs.Models;
+@using Azure.Storage.Blobs.Specialized;
+
+@functions {
+   public async Task<string> delete(BlobContainerClient containerClient, string CONTAINER_NAME, string FILE_NAME)
+   {
+      try
+      {
+         BlobClient blobClient = containerClient.GetBlobClient($"{FILE_NAME}.txt");
+         await blobClient.DeleteAsync();
+         return "Success";
+      }
+      catch (Exception e)
+      {
+         return "Error while creating: " + e.ToString();
+      }
+   }
+   public async Task<List<string>> listing(BlobContainerClient containerClient)
+   {
+      var list = new List<string>();
+
+      await foreach (var blobItem in containerClient.GetBlobsAsync())
+      {
+         list.Add(blobItem.Name);
+      }
+      return list;
+   }
+}
+
+@{
+   @* // Write there String for container from explorer
+string storageConnectionString
+="SharedAccessSignature=sv=2023-01-03&ss=btqf&srt=sco&st=2024-02-20T08%3A37%3A09Z&se=2024-02-21T08%3A37%3A09Z&sp=rwdlac&sig=egyv0gXwe2bB%2FFXcmQ47LD%2FHuTx8%2FpvJHiHJGojXR0E%3D;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;FileEndpoint=http://devstoreaccount1.file.core.windows.net;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;";
+// Write container name
+string containerName = "111";
+string fileName = "abc";
+
+BlobContainerClient containerClient = authenticate(storageConnectionString, containerName);
+*@
+   string result = "";
+   if (Model.blobList != null)
+   {
+      result = Model.blobList;
+   }
+   else
+   {
+      result = "Empty";
+   }
+   string err = "";
+   if (Model.errors != null)
+   {
+      err = Model.errors;
+   }
+   else
+   {
+      err = "No errors";
+   }
+   @* result = create(containerClient, containerName, fileName).Result; *@
+   @* result = string.Join(", ", listing(containerClient).Result); *@
+   @* result = delete(containerClient, containerName, fileName).Result; *@
+
+}
+
+<form method="post" enctype="multipart/form-data" >
+   <div class="text-center">
+      <div>ITS ANOTHER FILE!!!</div>
+      <label for="result" class="form-label">Current storage content</label>
+      <div id="result">
+         @result
+      </div>
+      <button type="submit" class="btn btn-success">Add new file</button>
+      <div id="err">
+         @err
+      </div>
+   </div>
+</form>
